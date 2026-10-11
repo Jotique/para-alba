@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Para Alba</title>
+<meta name="theme-color" content="#FFF1F4">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🩷</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --fondo: #FFF1F4;
+    --superficie: #FADCE5;
+    --rosa: #E8799A;
+    --rosa-claro: #FFD3DF;
+    --tinta: #5A2A3C;
+    --suave: #8A5568;
+    --blanco: #FFFBFC;
+    --serif: "Instrument Serif", Georgia, "Times New Roman", serif;
+    --sans: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  html { background: var(--fondo); scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    font-family: var(--sans);
+    color: var(--tinta);
+    background: var(--fondo);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  a:focus-visible, button:focus-visible, iframe:focus-visible { outline: 2px solid var(--rosa); outline-offset: 3px; }
+
+  /* Portada (pensada para móvil en vertical) */
+  .portada {
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    padding: calc(2.2rem + env(safe-area-inset-top, 0px)) 1.4rem calc(1.8rem + env(safe-area-inset-bottom, 0px));
+    background:
+      linear-gradient(to bottom, rgba(45,18,28,.5) 0%, rgba(45,18,28,0) 26%),
+      linear-gradient(to bottom, rgba(255,241,244,0) 50%, rgba(255,241,244,.92) 80%, var(--fondo) 100%),
+      url("fotos/portada.jpg") center 40% / cover no-repeat,
+      var(--superficie);
+  }
+  .portada h1 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(4.6rem, 24vw, 9rem);
+    line-height: .9;
+    letter-spacing: -0.02em;
+    color: var(--blanco);
+    text-shadow: 0 2px 18px rgba(45,18,28,.45);
+  }
+  .portada .lema {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(1.8rem, 7vw, 2.4rem);
+    margin-top: .5rem;
+    color: var(--blanco);
+    text-shadow: 0 2px 14px rgba(45,18,28,.5);
+  }
+  .contador .num {
+    font-family: var(--serif);
+    font-size: clamp(3.4rem, 16vw, 5.5rem);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    color: var(--tinta);
+  }
+  .contador .etiqueta { font-size: 1.05rem; margin-top: .2rem; color: var(--tinta); }
+  .contador .desglose { margin-top: .6rem; font-size: 1.05rem; color: var(--suave); }
+  .bajar {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-height: 44px; margin-top: 1rem; padding: 0 1.2rem;
+    color: var(--tinta); font-size: 1rem; text-decoration: none;
+    border: 1px solid var(--rosa); border-radius: 999px;
+  }
+
+  /* Secciones */
+  section { padding: 3.6rem 1.4rem; max-width: 46rem; margin: 0 auto; }
+  h2 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(2.2rem, 10vw, 3.2rem);
+    line-height: 1.05;
+    margin-bottom: 1.6rem;
+    color: var(--tinta);
+  }
+
+  /* Carta */
+  .carta p {
+    font-family: var(--serif);
+    font-size: clamp(1.4rem, 5.6vw, 1.7rem);
+    line-height: 1.45;
+    margin-bottom: 1.2rem;
+    max-width: 34em;
+  }
+
+  /* Galería */
+  .galeria { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; align-items: start; }
+  .galeria figure:nth-child(even) { margin-top: 1.8rem; }
+  .galeria .marco {
+    width: 100%;
+    background: var(--superficie);
+    border-radius: 14px;
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+  }
+  .galeria figure:nth-child(odd) .marco { aspect-ratio: 3 / 4; }
+  .galeria figure:nth-child(even) .marco { aspect-ratio: 4 / 5; }
+  .galeria img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .galeria .vacia { color: var(--suave); font-size: .9rem; padding: 1rem; text-align: center; }
+  .galeria figcaption { color: var(--suave); font-size: .92rem; margin-top: .5rem; line-height: 1.4; }
+
+  /* Vídeo */
+  .video-caja { aspect-ratio: 16 / 9; width: 100%; background: var(--superficie); border-radius: 14px; overflow: hidden; display: grid; place-items: center; }
+  .video-caja iframe { width: 100%; height: 100%; border: 0; }
+  .video-caja p { color: var(--suave); padding: 1.5rem; text-align: center; }
+
+  footer { text-align: center; padding: 3rem 1.4rem 4rem; color: var(--suave); background: var(--superficie); }
+  footer .cierre { font-family: var(--serif); font-style: italic; font-size: 2.2rem; color: var(--tinta); margin-bottom: .4rem; }
+
+  @media (min-width: 700px) {
+    section { padding: 5rem 1.6rem; }
+    .galeria { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .galeria figure:nth-child(even) { margin-top: 0; }
+    .galeria figure:nth-child(3n+2) { margin-top: 2.2rem; }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+
+<header class="portada">
+  <div>
+    <h1 id="nombre"></h1>
+    <p class="lema" id="lema"></p>
+  </div>
+  <div class="contador">
+    <div class="num" id="dias">0</div>
+    <div class="etiqueta">días juntos</div>
+    <div class="desglose" id="desglose"></div>
+    <a class="bajar" href="#carta">Sigue bajando</a>
+  </div>
+</header>
+
+<section class="carta" id="carta">
+  <h2>Lo que quiero decirte</h2>
+  <div id="textoCarta"></div>
+</section>
+
+<section id="momentos">
+  <h2>Algunos de nuestros momentos</h2>
+  <div class="galeria" id="galeria"></div>
+</section>
+
+<section id="video">
+  <h2>Todo lo que hemos vivido</h2>
+  <div class="video-caja" id="videoCaja"></div>
+</section>
+
+<footer>
+  <p class="cierre" id="cierre"></p>
+  <p id="firma"></p>
+</footer>
+
+<script>
+/* ============================================================
+   AQUÍ EDITAS TODO. No hace falta tocar nada más abajo.
+   ============================================================ */
+const CONFIG = {
+  ella: "Alba",
+  yo: "Jota",
+  inicio: "2025-10-05",            // fecha en la que empezasteis (AAAA-MM-DD)
+  lema: "Todo por ti.",
+
+  // ID del vídeo de YouTube (lo que va después de "v=" en el enlace). Déjalo vacío si aún no lo tienes.
+  videoId: "",
+
+  carta: [
+    "Alba, no sé explicarte bien lo que siento, pero voy a intentarlo.",
+    "Te quiero de una forma que no sabía que existía. Contigo todo tiene más sentido, y hasta los días normales se vuelven especiales.",
+    "Por ti lo doy todo. Lo daría una y otra vez, sin pensarlo, porque eres la persona con la que quiero estar.",
+    "Gracias por quererme y por estar a mi lado. Esta página es solo un trocito de todo lo que siento y de todo lo que hemos vivido juntos."
+  ],
+
+  // Fotos: sube las imágenes a la carpeta "fotos" con estos nombres (o cambia los nombres aquí).
+  fotos: [
+    { src: "fotos/foto1.jpg", pie: "Hasta lo más alto, contigo" },
+    { src: "fotos/foto2.jpg", pie: "Atardecer a tu lado" },
+    { src: "fotos/foto3.jpg", pie: "Contigo, cualquier vista es mejor" },
+    { src: "fotos/foto4.jpg", pie: "Entre girasoles" },
+    { src: "fotos/foto5.jpg", pie: "En el aire, contigo" },
+    { src: "fotos/foto6.jpg", pie: "Haciendo el tonto, como siempre" },
+    { src: "fotos/foto7.jpg", pie: "Plan de casa, el mejor plan" },
+    { src: "fotos/foto8.jpg", pie: "Hasta en el ascensor" },
+    { src: "fotos/foto9.jpg", pie: "Rutina de dos" },
+    { src: "fotos/foto10.jpg", pie: "Las mañanas contigo" },
+    { src: "fotos/foto11.jpg", pie: "Caminando juntos" },
+    { src: "fotos/foto12.jpg", pie: "Para ti" }
+  ],
+
+  cierre: "Por muchos más.",
+};
+/* ============================================================ */
+
+const $ = (id) => document.getElementById(id);
+const plural = (n, uno, varios) => n + " " + (n === 1 ? uno : varios);
+
+document.title = "Para " + CONFIG.ella;
+$("nombre").textContent = CONFIG.ella + ",";
+$("lema").textContent = CONFIG.lema;
+$("cierre").textContent = CONFIG.cierre;
+$("firma").textContent = "Con todo mi cariño, " + CONFIG.yo;
+
+/* Contador */
+(function () {
+  const [a, m, d] = CONFIG.inicio.split("-").map(Number);
+  const inicio = new Date(a, m - 1, d);
+  const hoy = new Date();
+  const hoyLocal = new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate());
+
+  const total = Math.max(0, Math.round((hoyLocal - inicio) / 86400000));
+
+  let años = hoyLocal.getFullYear() - inicio.getFullYear();
+  let meses = hoyLocal.getMonth() - inicio.getMonth();
+  let dias = hoyLocal.getDate() - inicio.getDate();
+  if (dias < 0) {
+    meses--;
+    dias += new Date(hoyLocal.getFullYear(), hoyLocal.getMonth(), 0).getDate();
+  }
+  if (meses < 0) { años--; meses += 12; }
+
+  const partes = [];
+  if (años > 0) partes.push(plural(años, "año", "años"));
+  if (meses > 0) partes.push(plural(meses, "mes", "meses"));
+  if (dias > 0 || partes.length === 0) partes.push(plural(dias, "día", "días"));
+  $("desglose").textContent = partes.length > 1
+    ? partes.slice(0, -1).join(", ") + " y " + partes[partes.length - 1]
+    : partes[0];
+
+  const el = $("dias");
+  const reducir = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reducir || total === 0) { el.textContent = total.toLocaleString("es-ES"); return; }
+  const duracion = 1800, t0 = performance.now();
+  (function paso(t) {
+    const p = Math.min(1, (t - t0) / duracion);
+    const suave = 1 - Math.pow(1 - p, 3);
+    el.textContent = Math.round(total * suave).toLocaleString("es-ES");
+    if (p < 1) requestAnimationFrame(paso);
+  })(t0);
+})();
+
+/* Carta */
+CONFIG.carta.forEach((texto) => {
+  const p = document.createElement("p");
+  p.textContent = texto;
+  $("textoCarta").appendChild(p);
+});
+
+/* Galería */
+CONFIG.fotos.forEach((f) => {
+  const fig = document.createElement("figure");
+  const marco = document.createElement("div");
+  marco.className = "marco";
+  const img = document.createElement("img");
+  img.src = f.src;
+  img.alt = f.pie;
+  img.loading = "lazy";
+  img.onerror = () => {
+    img.remove();
+    const v = document.createElement("span");
+    v.className = "vacia";
+    v.textContent = "Aquí irá una foto";
+    marco.appendChild(v);
+  };
+  marco.appendChild(img);
+  const cap = document.createElement("figcaption");
+  cap.textContent = f.pie;
+  fig.append(marco, cap);
+  $("galeria").appendChild(fig);
+});
+
+/* Vídeo */
+if (CONFIG.videoId) {
+  const ifr = document.createElement("iframe");
+  ifr.src = "https://www.youtube-nocookie.com/embed/" + encodeURIComponent(CONFIG.videoId) + "?rel=0";
+  ifr.title = "Nuestro vídeo";
+  ifr.allow = "accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen";
+  ifr.allowFullscreen = true;
+  $("videoCaja").appendChild(ifr);
+} else {
+  $("videoCaja").innerHTML = "<p>Aquí irá nuestro vídeo.</p>";
+}
+</script>
+</body>
+</html>
